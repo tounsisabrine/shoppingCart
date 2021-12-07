@@ -35,6 +35,10 @@ header{
      list-style: none;
  }
 
+ nav ul#user_info{
+     display: none;
+ }
+
  nav li a{
      display: flex;
      color: white;
