@@ -1,4 +1,4 @@
-let userInfo= document.querySelector("#userInfo");
+let userInfo= document.querySelector("#user_info");
 let userDom= document.querySelector("#user");
 let links= document.querySelector("#links");
 let logouBtn = document.querySelector("#logout");

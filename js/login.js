@@ -5,7 +5,8 @@ let login_btn = document.querySelector("#sign_in");
 let getuser = localStorage.getItem("username");
 let getpassword = localStorage.getItem("password");
 
-login_btn.addEventListener('click', function(e){
+login_btn.addEventListener('click', login)
+function login(e){
     e.preventDefault();
     if(username.value === "" || password.value === ""){
         alert("Please fill data");
@@ -28,5 +29,5 @@ login_btn.addEventListener('click', function(e){
 
 
 
-})
+}
 
