@@ -83,3 +83,42 @@ header{
      height: auto;
 
  }
+
+ /* product items */
+
+
+ .products {
+     width:  60%;
+     margin: 10px 0;
+ }
+ .product-item{
+     display: flex;
+     width: 100%;
+     border: 1px solid;
+ }
+
+ .product-item img{
+     width: 25%;
+     margin-right: 10px;
+ }
+
+ .product-item-actions{
+     flex: 1;
+     text-align: right;
+ }
+
+ .product-item .add-to-cart{
+     display: block;
+     margin-left: auto;
+     background-color: darkgreen;
+     color: white;
+     border: 0;
+     padding: 10px 20px;
+     font-size: 14px;
+     cursor: pointer;
+     font-family: 'Oswald', sans-serif;
+ }
+
+ .product-item-actions .favorite{
+     
+ }
