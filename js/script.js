@@ -59,7 +59,7 @@ if(username){
                 <span>Size: ${item.size}</span>
             </div>
             <div class="product-item-actions">
-                <button class="add-to-cart">Add to cart</button>
+                <button class="add-to-cart" onclick="AddedCart(${item.id})">Add to cart</button>
                 <i class="favorite fa fa-heart-o"></i>
             </div>
         </div>
@@ -70,6 +70,13 @@ if(username){
         productsDom.innerHTML=productsUI;
     }
     drawProductUI();
+
+    function AddedCart(id){
+        let choosenItem = products.find((item) => item.id ===id)
+        console.log(choosenItem);
+
+    }
+
 
     function CheckLogedUser(){
         if(localStorage.getItem("username")){

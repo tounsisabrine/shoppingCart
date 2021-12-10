@@ -39,6 +39,57 @@ header{
      display: none;
  }
 
+ nav ul#user_info li{
+    position: relative;
+    margin: 0 7px;
+}
+nav ul#user_info li i{
+color: #fff;
+cursor: pointer;
+font-size: 20px;
+}
+
+nav ul#user_info .carts-products {
+    position: absolute;
+    width: 200px;
+    transform: translate(-42%, 0);
+    background: #eaeaea;
+    top: 46px;
+    padding: 10px;
+    border: 1px solid green;
+    display: none;
+}
+
+nav ul#user_info .carts-products a {
+    background: darkgreen;
+    display: block;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    padding: 6px;
+
+}
+
+
+
+nav ul#user_info li .badge{
+    width: 20px;
+    height: 20px;
+    background-color: crimson;
+    color: #fff;
+    text-align: center;
+    display: block;
+    position: absolute;
+    border-radius: 50%;
+    top: -9px;
+    right: -11px;
+    font-size: 10px;
+    line-height: 20px;
+}
+
+
+
  nav li a{
      display: flex;
      color: white;
