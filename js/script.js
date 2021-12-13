@@ -79,23 +79,21 @@ if(username){
     drawProductUI();
 
     function AddedCart(id){
+        if(localStorage.getItem("username")){
         let choosenItem = products.find((item) => item.id ===id)
         cartProductDom.innerHTML +=`<p>${choosenItem.title}</p>`;
         let cartProductLength = document.querySelectorAll(".carts-products div p");
         console.log(cartProductLength);
         badgeDom.style.display = "block";
         badgeDom.innerHTML = cartProductLength.length;
-
-    }
-
-
-    function CheckLogedUser(){
-        if(localStorage.getItem("username")){
-            console.log("added to Cart");
-        } else{
+        }else{
             window.location ="login.html";
         }
+
     }
+
+
+
 
     function OpenCartMenu(){
    
