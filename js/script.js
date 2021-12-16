@@ -1,50 +1,4 @@
-let userInfo= document.querySelector("#user_info");
-let userDom= document.querySelector("#user");
-let links= document.querySelector("#links");
-let logouBtn = document.querySelector("#logout");
 
-let username = localStorage.getItem("username");
-
-if(username){
-    links.remove()
-    userInfo.style.display = "flex";
-    userDom.innerHTML= username;
-
-    
-}
- logouBtn.addEventListener("click", function(){
-    localStorage.clear();
-    setTimeout(() => {
-        window.location ="register.html";
-    }, 1500);
-
- });
-
- let products =[
-
-    { id: 1,
-      title: "Micro-casque"  ,
-      size:"Large",
-      imageUrl:"images/microcasque.jpg.",
-    },
-    { id: 2,
-        title: "Laptop"  ,
-        size:"Large",
-        imageUrl:"images/laptop.jpg",
-      },
-      { id: 3,
-        title: "Mouse"  ,
-        size:"Small",
-        imageUrl:"images/mouse.jpg",
-      },
-      { id: 4,
-        title: "Tablette"  ,
-        size:"Meduim",
-        imageUrl:"images/tablette.jpg",
-      },
-
-
-    ];
     //define products
     let productsDom= document.querySelector(".products");
     let cartProductDom= document.querySelector(".carts-products div");
@@ -55,13 +9,13 @@ if(username){
     shoppingCart.addEventListener('click',OpenCartMenu );
 
 
-    function drawProductUI(){
+    (function drawProductUI(){
         let productsUI = products.map((item)=>{
             return `
             <div class="product-item">
             <img src="${item.imageUrl}" alt="images">
             <div class="product-item-desc">
-                <h2>${item.title}</h2>
+                <a href="cartDetails.html" onclick="SelectId(${item.id})">${item.title}</a>
                 <p>lorem ipsum dolor sit amet consectetur adipiscing elit</p>
                 <span>Size: ${item.size}</span>
             </div>
@@ -75,13 +29,33 @@ if(username){
         })
 
         productsDom.innerHTML=productsUI;
-    }
-    drawProductUI();
+    })();
+  //check if there are item in localstorage
+    let addedItem =localStorage.getItem("productsInCart")
+    ? JSON.parse(localStorage.getItem("productsInCart"))
+    : [];
 
+    if(addedItem){
+        addedItem.map((item) =>{
+            cartProductDom.innerHTML +=`<p>${item.title}</p>`;
+        });
+        badgeDom.style.display= "block";
+        badgeDom.innerHTML = addedItem.length;
+
+    }
+
+
+
+
+    //Add items to Cart
     function AddedCart(id){
         if(localStorage.getItem("username")){
         let choosenItem = products.find((item) => item.id ===id)
         cartProductDom.innerHTML +=`<p>${choosenItem.title}</p>`;
+
+        addedItem = [...addedItem, choosenItem];
+        localStorage.setItem('productsInCart', JSON.stringify(addedItem))
+
         let cartProductLength = document.querySelectorAll(".carts-products div p");
         console.log(cartProductLength);
         badgeDom.style.display = "block";
@@ -94,7 +68,7 @@ if(username){
 
 
 
-
+// open cart Menu
     function OpenCartMenu(){
    
         if(cartProductDom.innerHTML !== ""){
@@ -105,6 +79,12 @@ if(username){
                 cart.style.display ="block";
             }
         } 
+
+    }
+
+    function SelectId(id){
+        localStorage.setItem("productId", id);
+        window.location = "cartDetails.html";
 
     }
 
