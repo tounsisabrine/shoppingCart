@@ -7,9 +7,10 @@
     let badgeDom = document.querySelector(".badge");
     let shoppingCart = document.querySelector(".shopping-cart");
     shoppingCart.addEventListener('click',OpenCartMenu );
+    let products= JSON.parse(localStorage.getItem("products"));
 
-
-    (function drawProductUI(){
+    let drawProductUI;
+    (drawProductUI=function (products = []){
         let productsUI = products.map((item)=>{
             return `
             <div class="product-item">
@@ -29,7 +30,7 @@
         })
 
         productsDom.innerHTML=productsUI;
-    })();
+    })(JSON.parse(localStorage.getItem("products")));
   //check if there are item in localstorage
     let addedItem =localStorage.getItem("productsInCart")
     ? JSON.parse(localStorage.getItem("productsInCart"))
@@ -84,7 +85,30 @@
 
     function SelectId(id){
         localStorage.setItem("productId", id);
+        console.log(localStorage.setItem("productId", id));
         window.location = "cartDetails.html";
+
+    }
+
+    input = document.getElementById("search");
+    input.addEventListener("keyup", function(e){
+        if(e.keyCode ===13){
+            Search(e.target.value, products);
+        }
+        if(e.target.value.trim()===""){
+            drawProductUI(JSON.parse(localStorage.getItem("products")));
+
+        }
+    })
+
+    function Search(title,myArray){
+    /*    for (var i=0; i<myArray.length; i++){
+            if(myArray[i] === title){
+                console.log(myArray[i]);
+            }
+        } */
+        let arr = myArray.filter((item)=> item.title === title);
+        drawProductUI(arr);
 
     }
 
